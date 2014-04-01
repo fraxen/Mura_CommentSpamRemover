@@ -29,34 +29,39 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 	<!---<ul id="navTask">
 		<li><a href="#buildURL('admin:main.another')#">Another Page</a></li>
 	</ul>--->
+
 	<form action="#buildURL('admin:main.deleteComments')#" method="post">
 	<table width="100%" id="siteComments">
+		<thead>
 		<tr>
-			<th>Name</th>
-			<th>Email</th>
-			<th>IP</th>
-			<th>Date Entered</th>
-			<th>Comment</th>
-			<th>Delete</th>
-			<th>select</th>
+			<th valign="bottom">View</th>
+			<th valign="bottom">Name</th>
+			<th valign="bottom">Email</th>
+			<th valign="bottom">IP</th>
+			<th valign="bottom">Date Entered</th>
+			<th valign="bottom">Comment</th>
+			<th valign="bottom">Delete</th>
+			<th valign="bottom">Select<br/><a href="##" onclick="var allBoxes=document.getElementsByTagName('input');for(j=0;j<allBoxes.length;j++){if(allBoxes[j].type=='checkbox'){allBoxes[j].checked=true;}}return false;">select&nbsp;all</a></th>
 		</tr>
+		</thead>
+		<tbody>
 		<cfloop query="rc.qGetComments">
 			<tr>
+				<td><a href="#rc.$.getBean('content').loadBy(contentID='#contentid#',siteId='#session.siteid#').getURL()#" target="_blank">#title#</a></td>
 				<td>#name#</td>
-				<td>#email#</td>
-				<td>#ip#</td>
-				<td>#dateformat(entered, "short")#</td>
-				<td>
-					<cftooltip tooltip="#comments#">
+				<td style="text-align: CENTER;">#email#</td>
+				<td style="text-align: CENTER;">#ip#</td>
+				<td style="text-align: CENTER;">#dateformat(entered, "short")#</td>
+				<td style="text-align: CENTER;" title="#comments#">
 						View
-					</cftooltip> 
 				</td>
-				<td>
+				<td style="text-align: CENTER;">
 					<a href="#buildURL('admin:main.default?cid=#URLEncodedFormat(commentid)#')#" onclick="return confirm('Delete the comment by #name#? [Comment Date: #dateformat(entered, 'short')#]')">Delete</a>
 				</td>
-				<td><input type="checkbox" name="selectedComments" value="#URLEncodedFormat(commentid)#"></td>
+				<td style="text-align: CENTER;"><input type="checkbox" name="selectedComments" value="#URLEncodedFormat(commentid)#" /></td>
 			</tr>
 		</cfloop>
+		</tbody>
 	</table>
 	<div style="margin-bottom: 18px;" class="row">
 		<button type="submit" value="save" class="btn btn-danger pull-right" onclick="return confirm('Delete the selected comment(s)')"><i class="icon-trash icon-white" data-original-title=""></i>
