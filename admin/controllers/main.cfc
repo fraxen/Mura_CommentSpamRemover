@@ -37,9 +37,27 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 		</cfif>
 		
 		<cfquery name="rc.qGetComments" datasource="#rc.$.getConfigBean().getDatasource()#">
-			select distinct commentid, name, entered, email, comments, ip
-			from tcontentcomments
-			where siteid = '#session.siteid#'
+			SELECT DISTINCT
+				commentid,tcontentcomments.contentid,name,entered,email,comments,ip,title,filename,lastupdate
+			FROM
+				tcontentcomments
+				LEFT JOIN (
+					SELECT
+						tcontent.title,tcontent.contentid,tcontent.filename,tcontent.lastupdate
+					FROM
+						mura.tcontent tcontent
+						INNER JOIN (SELECT contentid,Max(lastupdate) AS
+						latestUpdate
+						FROM   tcontent
+						GROUP  BY contentid) AS latestContent
+						ON tcontent.contentid = latestContent.contentid
+						AND tcontent.lastupdate =
+						latestContent.latestupdate) pages
+						ON pages.contentid = tcontentcomments.contentid
+			WHERE
+				siteid = '#session.siteid#'
+			ORDER BY
+				entered ASC  
 		</cfquery>
 	</cffunction>
 	
@@ -53,6 +71,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 			</cfquery>
 		</cfif>
 
+	</cffunction>
+	<cffunction name="endDeleteComments" returntype="void" access="public">
+		<cfset VARIABLES.fw.redirect('main.default') />
 	</cffunction>
 
 </cfcomponent>
