@@ -31,6 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 	</ul>--->
 
 	<form action="#buildURL('admin:main.deleteComments')#" method="post">
+	<cfdump var="#rc.qGetComments#" />
 	<table width="100%" id="siteComments">
 		<thead>
 		<tr>
@@ -47,12 +48,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 		<tbody>
 		<cfloop query="rc.qGetComments">
 			<tr>
-				<td><a href="#rc.$.getBean('content').loadBy(contentID='#contentid#',siteId='#session.siteid#').getURL()#" target="_blank">#title#</a></td>
+				<td>
+					<a href="#rc.$.getBean('content').loadBy(contentID='#contentid#',siteId='#session.siteid#').getURL()#" target="_blank">
+					#rc.$.getBean('content').loadBy(contentID='#contentid#',siteId='#session.siteid#').getHtmlTitle()#
+					</a>
+				</td>
 				<td>#name#</td>
 				<td style="text-align: CENTER;">#email#</td>
 				<td style="text-align: CENTER;">#ip#</td>
 				<td style="text-align: CENTER;">#dateformat(entered, "short")#</td>
-				<td style="text-align: CENTER;" title="#comments#">
+				<td style="text-align: CENTER;" title="#HTMLEditFormat(comments)#">
 						View
 				</td>
 				<td style="text-align: CENTER;">
