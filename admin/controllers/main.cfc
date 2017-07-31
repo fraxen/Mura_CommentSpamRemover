@@ -54,6 +54,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 			</cfquery>
 		</cfif>
 
+		<cfset fw.redirect(action='public:main.default') />
+
 	</cffunction>
 
 </cfcomponent>
