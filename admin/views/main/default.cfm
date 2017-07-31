@@ -31,7 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 	</ul>--->
 
 	<form action="#buildURL('admin:main.deleteComments')#" method="post">
-	<cfdump var="#rc.qGetComments#" />
+	<!--- <cfdump var="#rc.qGetComments#" /> --->
 	<table width="100%" id="siteComments" class="table table-striped table-condensed">
 		<thead>
 		<tr>
