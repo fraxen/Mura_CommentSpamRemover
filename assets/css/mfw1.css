@@ -46,3 +46,8 @@
 .mfw1wrapper * html .clearfix {height:1%;}
 .mfw1wrapper .clearfix {display:block;}
 /* close commented backslash hack */
+
+th {TEXT-ALIGN: Center;}
+tr th:nth-child(1) {TEXT-ALIGN: Left;}
+td {TEXT-ALIGN: Center !important; CURSOR: Pointer;}
+tr td:nth-child(1) {TEXT-ALIGN: Left !important;}

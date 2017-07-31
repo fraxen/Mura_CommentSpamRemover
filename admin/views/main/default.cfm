@@ -32,17 +32,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 	<form action="#buildURL('admin:main.deleteComments')#" method="post">
 	<cfdump var="#rc.qGetComments#" />
-	<table width="100%" id="siteComments">
+	<table width="100%" id="siteComments" class="table table-striped table-condensed">
 		<thead>
 		<tr>
-			<th valign="bottom">View</th>
-			<th valign="bottom">Name</th>
-			<th valign="bottom">Email</th>
-			<th valign="bottom">IP</th>
-			<th valign="bottom">Date Entered</th>
-			<th valign="bottom">Comment</th>
-			<th valign="bottom">Delete</th>
-			<th valign="bottom">Select<br/><a href="##" onclick="var allBoxes=document.getElementsByTagName('input');for(j=0;j<allBoxes.length;j++){if(allBoxes[j].type=='checkbox'){allBoxes[j].checked=true;}}return false;">select&nbsp;all</a></th>
+			<th>Page</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>IP</th>
+			<th>Date Entered</th>
+			<th>Delete</th>
+			<th><a href="##" onclick="var allBoxes=document.getElementsByTagName('input');for(j=0;j<allBoxes.length;j++){if(allBoxes[j].type=='checkbox'){allBoxes[j].checked=true;}}return false;">Select</a></th>
 		</tr>
 		</thead>
 		<tbody>
