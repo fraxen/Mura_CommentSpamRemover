@@ -40,6 +40,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 			select distinct commentid, name, entered, email, comments, ip, contentid
 			from tcontentcomments
 			where siteid = '#session.siteid#'
+			ORDER BY entered DESC;
 		</cfquery>
 	</cffunction>
 	
