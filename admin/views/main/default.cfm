@@ -61,6 +61,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 						View
 				</td>
 				<td style="text-align: CENTER;">
+				<td>#LSDateFormat(entered, "YYYY-MM-DD")#</td>
 					<a href="#buildURL('admin:main.default?cid=#URLEncodedFormat(commentid)#')#" onclick="return confirm('Delete the comment by #name#? [Comment Date: #dateformat(entered, 'short')#]')">Delete</a>
 				</td>
 				<td style="text-align: CENTER;"><input type="checkbox" name="selectedComments" value="#URLEncodedFormat(commentid)#" /></td>
