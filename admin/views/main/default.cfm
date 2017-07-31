@@ -47,6 +47,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 		<tbody>
 		<cfloop query="rc.qGetComments">
 			<tr>
+			<tr title="#HTMLEditFormat(comments)#" data-toggle="tooltip" data-placement="right">
 				<td>
 					<a href="#rc.$.getBean('content').loadBy(contentID='#contentid#',siteId='#session.siteid#').getURL()#" target="_blank">
 					#rc.$.getBean('content').loadBy(contentID='#contentid#',siteId='#session.siteid#').getHtmlTitle()#
@@ -73,3 +74,15 @@ Delete selection</button>
 	</div>
 	</form>
 </cfoutput>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('[data-toggle="tooltip"]').tooltip();
+		$('tr td').click(function(e) {
+			if (e.target.type == 'checkbox') {
+				e.stopPropagation();
+			} else {
+				$(this).parent().find('input').click();
+			}
+		});
+	});
+</script>
