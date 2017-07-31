@@ -46,25 +46,20 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 		</thead>
 		<tbody>
 		<cfloop query="rc.qGetComments">
-			<tr>
 			<tr title="#HTMLEditFormat(comments)#" data-toggle="tooltip" data-placement="right">
 				<td>
 					<a href="#rc.$.getBean('content').loadBy(contentID='#contentid#',siteId='#session.siteid#').getURL()#" target="_blank">
 					#rc.$.getBean('content').loadBy(contentID='#contentid#',siteId='#session.siteid#').getHtmlTitle()#
 					</a>
 				</td>
-				<td>#name#</td>
-				<td style="text-align: CENTER;">#email#</td>
-				<td style="text-align: CENTER;">#ip#</td>
-				<td style="text-align: CENTER;">#dateformat(entered, "short")#</td>
-				<td style="text-align: CENTER;" title="#HTMLEditFormat(comments)#">
-						View
-				</td>
-				<td style="text-align: CENTER;">
+				<td><a href="http://www.stopforumspam.com/search?q=#name#" target="_blank">#name#</a></td>
+				<td><a href="http://www.stopforumspam.com/search?q=#email#" target="_blank">#email#</a></td>
+				<td><a href="http://www.stopforumspam.com/search?q=#ip#" target="_blank">#ip#</a></td>
 				<td>#LSDateFormat(entered, "YYYY-MM-DD")#</td>
+				<td>
 					<a href="#buildURL('admin:main.default?cid=#URLEncodedFormat(commentid)#')#" onclick="return confirm('Delete the comment by #name#? [Comment Date: #dateformat(entered, 'short')#]')">Delete</a>
 				</td>
-				<td style="text-align: CENTER;"><input type="checkbox" name="selectedComments" value="#URLEncodedFormat(commentid)#" /></td>
+				<td><input type="checkbox" name="selectedComments" value="#URLEncodedFormat(commentid)#" /></td>
 			</tr>
 		</cfloop>
 		</tbody>
